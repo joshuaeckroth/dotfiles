@@ -1,1 +1,77 @@
-/home/josh/.emacs
+(custom-set-variables
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ '(uniquify-buffer-name-style (quote post-forward-angle-brackets) nil (uniquify)))
+(custom-set-faces
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 83 :width normal :foundry "unknown" :family "Liberation Mono")))))
+
+(tool-bar-mode -1)
+(set-scroll-bar-mode 'right)
+
+;; clojure-mode
+(add-to-list 'load-path "~/Documents/github/clojure-mode")
+(require 'clojure-mode)
+
+;; slime
+(eval-after-load "slime" 
+  '(progn (slime-setup '(slime-repl))))
+
+(add-to-list 'load-path "~/Documents/github/slime")
+(require 'slime)
+(slime-setup)
+
+
+(add-to-list 'load-path "~/.emacs.d")
+(autoload 'paredit-mode "paredit-beta-custom"
+  "Minor mode for pseudo-structurally editing Lisp code." t)
+(add-hook 'emacs-lisp-mode-hook       (lambda () (paredit-mode +1)))
+(add-hook 'lisp-mode-hook             (lambda () (paredit-mode +1)))
+(add-hook 'lisp-interaction-mode-hook (lambda () (paredit-mode +1)))
+(add-hook 'clojure-mode-hook          (lambda () (paredit-mode +1)))
+(add-hook 'slime-repl-mode-hook       (lambda () (paredit-mode +1)))
+
+;; Stop SLIME's REPL from grabbing DEL,
+;; which is annoying when backspacing over a '('
+(defun override-slime-repl-bindings-with-paredit ()
+  (define-key slime-repl-mode-map
+    (read-kbd-macro paredit-backward-delete-key) nil))
+(add-hook 'slime-repl-mode-hook 'override-slime-repl-bindings-with-paredit)
+
+
+(add-to-list 'load-path "~/Documents/github/magit/installed/share/emacs/site-lisp")
+(autoload 'magit-status "magit" nil t)
+
+(require 'uniquify)
+
+(iswitchb-mode 1)
+(setq iswitchb-buffer-ignore '("^ " "*Buffer" "^\*magit" "^\*Customize"
+			       "^\*Completions" "^\*Messages" "^\*Help"
+			       "\*scratch\*" "\*GNU Emacs\*"))
+(setq iswitchb-default-method 'samewindow)
+(defun iswitchb-local-keys ()
+  (mapc (lambda (K) 
+	  (let* ((key (car K)) (fun (cdr K)))
+	    (define-key iswitchb-mode-map (edmacro-parse-keys key) fun)))
+	'(("<right>" . iswitchb-next-match)
+	  ("<left>"  . iswitchb-prev-match)
+	  ("<up>"    . ignore             )
+	  ("<down>"  . ignore             ))))
+(add-hook 'iswitchb-define-mode-map-hook 'iswitchb-local-keys)
+
+(defadvice iswitchb-kill-buffer (after rescan-after-kill activate)
+  "*Regenerate the list of matching buffer names after a kill.
+    Necessary if using `uniquify' with `uniquify-after-kill-buffer-p'
+    set to non-nil."
+  (setq iswitchb-buflist iswitchb-matches)
+  (iswitchb-rescan))
+(defun iswitchb-rescan ()
+  "*Regenerate the list of matching buffer names."
+  (interactive)
+  (iswitchb-make-buflist iswitchb-default)
+  (setq iswitchb-rescan t))
