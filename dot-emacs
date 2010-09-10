@@ -3,6 +3,36 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
+ '(muse-html-style-sheet "<style type=\"text/css\">
+body {
+  background: white; color: black;
+  margin-left: 3%; margin-right: 7%;
+  line-height: 1.5;
+  font-family: Nimbus Sans L, sans;
+}
+
+p { margin-top: 1% }
+p.verse { margin-left: 3% }
+
+.example { margin-left: 3% }
+
+li { margin: 0.5em 0; }
+
+h2 {
+  margin-top: 25px;
+  margin-bottom: 0px;
+}
+h3 { margin-bottom: 0px; }
+
+pre {
+  border: 1px solid #ccc;
+  margin: 5px;
+  padding: 5px;
+}
+
+code { color: #bc8f8f; font-weight: bold; }
+    </style>")
+ '(muse-latex2png-scale-factor 1.3)
  '(uniquify-buffer-name-style (quote post-forward-angle-brackets) nil (uniquify)))
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
@@ -13,6 +43,22 @@
 
 (tool-bar-mode -1)
 (set-scroll-bar-mode 'right)
+(setq inhibit-startup-message t)
+(setq initial-scratch-message nil)
+(setq line-number-mode t)
+(setq column-number-mode t)
+(line-number-mode t)
+(column-number-mode t)
+(global-font-lock-mode t)
+(show-paren-mode t)
+(setq show-paren-delay 0.0)
+(setq show-paren-style 'parenthesis)
+
+(setq make-backup-files nil)
+(setq auto-save-default nil)
+
+(setq-default indent-tabs-mode nil)
+(blink-cursor-mode nil)
 
 ;; clojure-mode
 (add-to-list 'load-path "~/Documents/github/clojure-mode")
@@ -104,3 +150,22 @@
   (interactive)
   (iswitchb-make-buflist iswitchb-default)
   (setq iswitchb-rescan t))
+
+
+;; muse
+(require 'muse-mode)     ; load authoring mode
+
+(require 'muse-html)     ; load publishing styles
+(require 'muse-latex)
+(require 'muse-docbook)
+(require 'muse-latex2png-modified) ; in emacs.d, local modifications
+(require 'muse-colors)   ; in emacs.d, local modifications
+
+(require 'muse-project)  ; publish files in projects
+
+
+(setq muse-project-alist
+      '(("miscellany" ("~/Documents/miscellany/content" :default "index")
+         (:base "html" :path "~/Documents/miscellany/html"))
+	("cse202" ("~/Documents/cse202" :default "CSE 202")
+	 (:base "html" :path "~/Documents/cse202"))))
