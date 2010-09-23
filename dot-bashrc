@@ -103,5 +103,7 @@ export PATH=$PATH:~/Documents/github/clojure-contrib/launchers/bash:~/Documents/
 alias clj=clj-env-dir
 
 export ANDROID_HOME=~/Documents/hostgis/android-sdk-linux_86
+export PATH=$PATH:$ANDROID_HOME/tools
 
 export JAVA_HOME=/usr/lib/jvm/java-6-sun-1.6.0.20
+export MAVEN_HOME=~/.m2

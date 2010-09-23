@@ -3,6 +3,15 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
+ '(c-basic-offset 4)
+ '(c-default-style (quote ((java-mode . "java") (awk-mode . "awk") (other . "bsd"))))
+ '(jde-jdk (list "1.6.0.20"))
+ '(jde-jdk-registry (quote (("1.6.0.20" . "/usr/lib/jvm/java-6-sun-1.6.0.20"))))
+ '(js2-auto-indent-flag nil)
+ '(js2-bounce-indent-flag t)
+ '(js2-enter-indents-newline nil)
+ '(js2-mirror-mode nil)
+ '(js2-rebind-eol-bol-keys nil)
  '(muse-html-style-sheet "<style type=\"text/css\">
 body {
   background: white; color: black;
@@ -183,8 +192,8 @@ code { color: #bc8f8f; font-weight: bold; }
 (setq muse-project-alist
       '(("miscellany" ("~/Documents/miscellany/content" :default "index")
          (:base "html" :path "~/Documents/miscellany/html"))
-	("cse202" ("~/Documents/cse202" :default "CSE 202")
-	 (:base "html" :path "~/Documents/cse202"))))
+	("cse202" ("~/Documents/cse202/gh-pages" :default "CSE 202")
+	 (:base "html" :path "~/Documents/cse202/gh-pages"))))
 
 
 ;; wanderlust
@@ -228,8 +237,14 @@ code { color: #bc8f8f; font-weight: bold; }
 	     auto-mode-alist)))
   (require 'jde))
 
+(defun remove-dos-eol ()
+  "Removes the disturbing '^M' showing up in files containing mixed UNIX and DOS line endings."
+  (interactive)
+  (setq buffer-display-table (make-display-table))
+  (aset buffer-display-table ?\^M []))
+
 (defun my-jde-mode-hook ()
-  (setq c-basic-offset 4))
+  (setq c-basic-offset 4)
+  (remove-dos-eol))
 
 (add-hook 'jde-mode-hook 'my-jde-mode-hook)
-
