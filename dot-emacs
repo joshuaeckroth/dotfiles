@@ -1,77 +1,66 @@
+(add-to-list 'load-path "~/.emacs.d")
+
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")
+                         ("melpa" . "http://melpa.milkbox.net/packages/")))
+(package-initialize)
+
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(LaTeX-command "pdflatex")
+ '(TeX-output-view-style (quote (("^dvi$" ("^landscape$" "^pstricks$\\|^pst-\\|^psfrag$") "%(o?)dvips -t landscape %d -o && gv %f") ("^dvi$" "^pstricks$\\|^pst-\\|^psfrag$" "%(o?)dvips %d -o && gv %f") ("^dvi$" ("^\\(?:a4\\(?:dutch\\|paper\\|wide\\)\\|sem-a4\\)$" "^landscape$") "%(o?)xdvi %dS -paper a4r -s 0 %d") ("^dvi$" "^\\(?:a4\\(?:dutch\\|paper\\|wide\\)\\|sem-a4\\)$" "%(o?)xdvi %dS -paper a4 %d") ("^dvi$" ("^\\(?:a5\\(?:comb\\|paper\\)\\)$" "^landscape$") "%(o?)xdvi %dS -paper a5r -s 0 %d") ("^dvi$" "^\\(?:a5\\(?:comb\\|paper\\)\\)$" "%(o?)xdvi %dS -paper a5 %d") ("^dvi$" "^b5paper$" "%(o?)xdvi %dS -paper b5 %d") ("^dvi$" "^letterpaper$" "%(o?)xdvi %dS -paper us %d") ("^dvi$" "^legalpaper$" "%(o?)xdvi %dS -paper legal %d") ("^dvi$" "^executivepaper$" "%(o?)xdvi %dS -paper 7.25x10.5in %d") ("^dvi$" "." "%(o?)xdvi %dS %d") ("^pdf$" "." "zathura %o") ("^html?$" "." "netscape %o"))))
+ '(bibtex-autokey-title-terminators "[.!?;]\\|--")
+ '(bibtex-autokey-titlewords (quote infty))
+ '(bibtex-expand-strings t)
+ '(bibtex-files (quote ("/home/josh/research/bibliography.bib")))
+ '(blink-cursor-mode nil)
  '(browse-url-browser-function (quote browse-url-generic))
- '(browse-url-generic-args (quote ("--new-window")))
  '(browse-url-generic-program "/usr/bin/chromium-browser")
  '(c-basic-offset 4)
  '(c-default-style (quote ((java-mode . "java") (awk-mode . "awk") (other . "bsd"))))
- '(jde-jdk (list "1.6.0.20"))
- '(jde-jdk-registry (quote (("1.6.0.20" . "/usr/lib/jvm/java-6-sun-1.6.0.20"))))
- '(js2-auto-indent-flag nil)
- '(js2-bounce-indent-flag t)
- '(js2-enter-indents-newline nil)
- '(js2-mirror-mode nil)
- '(js2-rebind-eol-bol-keys nil)
- '(muse-html-style-sheet "<style type=\"text/css\">
-body {
-  background: white; color: black;
-  margin-left: 3%; margin-right: 7%;
-  line-height: 1.5;
-  font-family: Nimbus Sans L, sans;
-}
-
-p { margin-top: 1% }
-p.verse { margin-left: 3% }
-
-.example { margin-left: 3% }
-
-li { margin: 0.5em 0; }
-
-h2 {
-  margin-top: 25px;
-  margin-bottom: 0px;
-}
-h3 { margin-bottom: 0px; }
-
-pre {
-  border: 1px solid #ccc;
-  margin: 5px;
-  padding: 5px;
-}
-
-td {
-  border-top: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
-}
-
-code { color: #bc8f8f; font-weight: bold; }
-    </style>")
- '(muse-html-table-attributes " class=\"muse-table\" border=\"0\" cellpadding=\"5\" cellspacing=\"0\"")
- '(muse-latex2png-scale-factor 1.3)
- '(uniquify-buffer-name-style (quote post-forward-angle-brackets) nil (uniquify)))
-(custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 83 :width normal :foundry "unknown" :family "Liberation Mono"))))
- '(mode-line ((((class color) (min-colors 88)) (:background "grey75" :foreground "black" :family "Ubuntu"))))
- '(mode-line-buffer-id ((t nil)))
- '(mode-line-highlight ((((class color) (min-colors 88)) (:box (:line-width 1 :color "grey40" :style released-button)))))
- '(mode-line-inactive ((default (:inherit mode-line)) (((class color) (min-colors 88) (background light)) (:background "grey90" :foreground "grey20" :weight light))))
- '(variable-pitch ((t (:family "Ubuntu")))))
+ '(calendar-mark-diary-entries-flag t)
+ '(clojure-mode-font-lock-comment-sexp t)
+ '(column-number-mode t)
+ '(default-input-method "TeX")
+ '(diary-list-entries-hook (quote (diary-sort-entries)))
+ '(dired-guess-shell-alist-user (quote (("\\.rar\\'" "unrar x"))))
+ '(dired-listing-switches "-Fl")
+ '(ess-help-own-frame (quote one))
+ '(font-lock-maximum-size nil)
+ '(helm-ff-auto-update-initial-value nil)
+ '(markdown-command "markdown")
+ '(markdown-command-needs-filename nil)
+ '(menu-bar-mode nil)
+ '(org-agenda-files (quote ("~/org")))
+ '(org-emphasis-regexp-components (quote (" 	('\"{" "- 	.,:!?;'\")}\\" " 	
+,\"'" "." 5)))
+ '(org-export-language-setup (quote (("en" "Author" "Date" "TOC" "Footnotes") ("ca" "Autor" "Data" "&Iacute;ndex" "Peus de p&agrave;gina") ("cs" "Autor" "Datum" "Obsah" "Pozn\341mky pod carou") ("da" "Ophavsmand" "Dato" "Indhold" "Fodnoter") ("de" "Autor" "Datum" "Inhaltsverzeichnis" "Fu&szlig;noten") ("eo" "A&#365;toro" "Dato" "Enhavo" "Piednotoj") ("es" "Autor" "Fecha" "&Iacute;ndice" "Pies de p&aacute;gina") ("fi" "Tekij&auml;" "P&auml;iv&auml;m&auml;&auml;r&auml;" "Sis&auml;llysluettelo" "Alaviitteet") ("fr" "Auteur" "Date" "Table des mati&egrave;res" "Notes de bas de page") ("hu" "Szerz&otilde;" "D&aacute;tum" "Tartalomjegyz&eacute;k" "L&aacute;bjegyzet") ("is" "H&ouml;fundur" "Dagsetning" "Efnisyfirlit" "Aftanm&aacute;lsgreinar") ("it" "Autore" "Data" "Indice" "Note a pi&egrave; di pagina") ("nl" "Auteur" "Datum" "Inhoudsopgave" "Voetnoten") ("no" "Forfatter" "Dato" "Innhold" "Fotnoter") ("nb" "Forfatter" "Dato" "Innhold" "Fotnoter") ("nn" "Forfattar" "Dato" "Innhald" "Fotnotar") ("pl" "Autor" "Data" "Spis tre&#x015b;ci" "Przypis") ("sv" "F&ouml;rfattare" "Datum" "Inneh&aring;ll" "Fotnoter"))))
+ '(org-export-run-in-background t)
+ '(org-export-time-stamp-file nil)
+ '(org-hide-leading-stars t)
+ '(org-indent-indentation-per-level 0)
+ '(org-mobile-directory "~/Dropbox/MobileOrg")
+ '(org-modules (quote (org-bbdb org-bibtex org-gnus org-info org-jsinfo org-irc org-wl)))
+ '(org-src-fontify-natively t)
+ '(prolog-system (quote swi))
+ '(smooth-scroll-margin 5)
+ '(speedbar-frame-parameters (quote ((minibuffer) (width . 40) (border-width . 0) (menu-bar-lines . 0) (tool-bar-lines . 0) (unsplittable . t) (left-fringe . 0))))
+ '(tabbar-background-color "white smoke")
+ '(uniquify-buffer-name-style (quote post-forward-angle-brackets) nil (uniquify))
+ '(user-mail-address "joshuaeckroth@gmail.com"))
 
 (tool-bar-mode -1)
 (menu-bar-mode -1)
-;;(set-scroll-bar-mode 'right)
 (scroll-bar-mode -1)
+(setq scroll-preserve-screen-position t)
+(setq scroll-step 1)
+(mouse-wheel-mode t)
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control))))
 (setq inhibit-startup-message t)
 (setq initial-scratch-message nil)
-(setq line-number-mode t)
-(setq column-number-mode t)
 (line-number-mode t)
 (column-number-mode t)
 (global-font-lock-mode t)
@@ -79,190 +68,450 @@ code { color: #bc8f8f; font-weight: bold; }
 (setq show-paren-delay 0.0)
 (setq show-paren-style 'parenthesis)
 (fset 'yes-or-no-p 'y-or-n-p)
-
 (setq make-backup-files nil)
 (setq auto-save-default nil)
-
 (setq-default indent-tabs-mode nil)
-(blink-cursor-mode nil)
+(setq redisplay-dont-pause t)
 
-(add-to-list 'load-path "~/.emacs.d")
+;; smooth scrolling
+(require 'smooth-scrolling)
 
-;; clojure-mode
-(add-to-list 'load-path "~/Documents/github/clojure-mode")
-(require 'clojure-mode)
+;; pretty symbols
+(defun substitute-pattern-with-unicode (pattern symbol)
+  "Add a font lock hook to replace the matched part of PATTERN with the 
+  Unicode symbol SYMBOL looked up with UNICODE-SYMBOL."
+  (interactive)
+  (font-lock-add-keywords
+   nil `((,pattern (0 (progn (compose-region (match-beginning 1) (match-end 1)
+                                             ,(unicode-symbol symbol))
+                             nil))))))
+  
+(defun substitute-patterns-with-unicode (patterns)
+  "Call SUBSTITUTE-PATTERN-WITH-UNICODE repeatedly."
+  (mapcar #'(lambda (x)
+              (substitute-pattern-with-unicode (car x)
+                                               (cdr x)))
+          patterns))
 
-;; slime
-(eval-after-load "slime" 
-  '(progn (slime-setup '(slime-repl))))
+(defun unicode-symbol (name)
+  "Translate a symbolic name for a Unicode character -- e.g., LEFT-ARROW
+  or GREATER-THAN into an actual Unicode character code. "
+  (decode-char 'ucs (case name
+                      ;; arrows
+                      ('space 160)
+                      ('left-arrow 8592)
+                      ('up-arrow 8593)
+                      ('right-arrow 8594)
+                      ('down-arrow 8595)
+                      ('down-double-arrow #X21D3)
+                      ;; boxes
+                      ('double-vertical-bar #X2551)
+                      ;; relational operators
+                      ('equal #X003d)
+                      ('not-equal #X2260)
+                      ('identical #X2261)
+                      ('not-identical #X2262)
+                      ('less-than #X003c)
+                      ('greater-than #X003e)
+                      ('less-than-or-equal-to #X2264)
+                      ('greater-than-or-equal-to #X2265)
+                      ;; logical operators
+                      ('logical-and #X2227)
+                      ('logical-or #X2228)
+                      ('logical-neg #X00AC)
+                      ;; misc
+                      ('nil #X2205)
+                      ('horizontal-ellipsis #X2026)
+                      ('double-exclamation #X203C)
+                      ('prime #X2032)
+                      ('double-prime #X2033)
+                      ('for-all #X2200)
+                      ('there-exists #X2203)
+                      ('element-of #X2208)
+                      ('double-vertical-bar #X2551)
+                      ('bullet 8226)
+                      ('triangle-right #X22B3)
+                      ;; mathematical operators
+                      ('square-root #X221A)
+                      ('squared #X00B2)
+                      ('cubed #X00B3)
+                      ('intersection #X2229)
+                      ('union #X222A)
+                      ;; letters
+                      ('f-with-hook #X192)
+                      ('alpha 945)
+                      ('beta 946)
+                      ('gamma 947)
+                      ('delta 948)
+                      ('iota 953)
+                      ('lambda 955)
+                      ('Lambda #X39B)
+                      ('rho 961)
+                      ('omega 969)
+                      ('epsilon 949)
+                      ('eta 951)
+                      ('sigma 963)
+                      ('Sigma 931))))
 
-(add-to-list 'load-path "~/Documents/github/slime")
-(require 'slime)
-(slime-setup)
+(defun clojure-unicode ()
+  (interactive)
+  (substitute-patterns-with-unicode
+   (list (cons "(\\(fn\\) " 'lambda)
+         (cons "(\\(defn\\) " 'Lambda)
+         (cons "(\\(some\\) " 'there-exists)
+         (cons "\\(->\\) " 'right-arrow)
+         (cons "\\(<=\\) " 'less-than-or-equal-to)
+         (cons "\\(>=\\) " 'greater-than-or-equal-to)
+         (cons "(\\(filter\\) " 'double-vertical-bar)
+         (cons "(\\(reduce\\) " 'down-arrow)
+         (cons "(\\(map\\) " 'triangle-right)
+         (cons "(\\(format\\) " 'f-with-hook)
+         (cons "(set/\\(intersection\\) " 'intersection)
+         (cons "(set/\\(union\\) " 'union))))
+(add-hook 'clojure-mode-hook 'clojure-unicode)
 
-(add-to-list 'load-path "~/Documents/github/swank-clojure-extra")
-(require 'swank-clojure-extra)
+(defun latex-unicode ()
+  (interactive)
+  (substitute-patterns-with-unicode
+   (list (cons "\\(\\\\emph\\)" 'epsilon)
+         (cons "\\(\\\\textbf\\)" 'beta)
+         (cons "\\(\\\\textit\\)" 'iota)
+         (cons "\\(\\\\subsection\\)" 'sigma)
+         (cons "\\(\\\\section\\)" 'Sigma)
+         (cons "\\(\\\\begin\\)" 'double-vertical-bar)
+         (cons "\\(\\\\end\\)" 'double-vertical-bar)
+         (cons "\\(\\\\includegraphics\\)" 'gamma)
+         (cons "\\(\\\\caption\\)" 'omega)
+         (cons "\\(\\\\label\\)" 'lambda)
+         (cons "\\(\\\\item\\)" 'bullet)
+         (cons "\\(\\\\ref\\)" 'rho)
+         (cons "\\(\\\\cite\\)" 'right-arrow))))
 
-(autoload 'paredit-mode "paredit-custom"
+(add-hook 'LaTeX-mode-hook 'latex-unicode)
+(add-hook 'LaTeX-mode-hook 'turn-on-auto-fill)
+(add-hook 'LaTeX-mode-hook 'flyspell-mode)
+(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+(setq reftex-plug-into-AUCTeX t)
+
+(eval-after-load "tex"
+  '(progn
+     (add-to-list 'TeX-expand-list
+                  '("%(RubberPDF)"
+                    (lambda ()
+                      (if (not TeX-PDF-mode) "" "--pdf"))))
+     (add-to-list 'TeX-command-list
+                  '("Rubber" "rubber %(RubberPDF) %t" TeX-run-background nil t) t)))
+
+(add-hook 'TeX-mode-hook
+          '(lambda ()
+             (define-key TeX-mode-map (kbd "<f9>")
+               (lambda ()
+                 (interactive)
+                 (save-buffer)
+                 (TeX-command-menu "Rubber")))
+             (define-key TeX-mode-map (kbd "<f12>")
+               (lambda ()
+                 (interactive)
+                 (TeX-view)
+                 [return]))))
+
+(require 'paredit)
+(autoload 'paredit-mode "paredit"
   "Minor mode for pseudo-structurally editing Lisp code." t)
-(add-hook 'emacs-lisp-mode-hook       (lambda () (paredit-mode +1)))
-(add-hook 'lisp-mode-hook             (lambda () (paredit-mode +1)))
-(add-hook 'lisp-interaction-mode-hook (lambda () (paredit-mode +1)))
-(add-hook 'clojure-mode-hook          (lambda () (paredit-mode +1)))
-(add-hook 'slime-repl-mode-hook       (lambda () (paredit-mode +1)))
 
-(defun slime-clojure-repl-setup () 
-  (when (string-equal "clojure" (slime-connection-name)) 
-    (clojure-mode-font-lock-setup) 
-    (when (slime-inferior-process) 
-      (slime-redirect-inferior-output)) 
-    (swank-clojure-slime-repl-modify-syntax)))
-(add-hook 'slime-repl-mode-hook 'slime-clojure-repl-setup)
+(defun lisp-mode-hacks ()
+  (paredit-mode +1)
+  (local-set-key (kbd "M-s") 'paredit-splice-sexp)
+  (local-set-key (kbd "RET") 'newline-and-indent))
 
-;; Stop SLIME's REPL from grabbing DEL,
-;; which is annoying when backspacing over a '('
-(defun override-slime-repl-bindings-with-paredit ()
-  (define-key slime-repl-mode-map
-    (read-kbd-macro paredit-backward-delete-key) nil))
-(add-hook 'slime-repl-mode-hook 'override-slime-repl-bindings-with-paredit)
+(add-hook 'emacs-lisp-mode-hook        'lisp-mode-hacks)
+(add-hook 'lisp-mode-hook              'lisp-mode-hacks)
+(add-hook 'lisp-interaction-mode-hook  'lisp-mode-hacks)
+(add-hook 'clojure-mode-hook           'lisp-mode-hacks)
+(add-hook 'slime-repl-mode-hook        'lisp-mode-hacks)
+(add-hook 'nrepl-interaction-mode-hook 'lisp-mode-hacks)
 
-(defun lein-swank () 
-  (interactive) 
-  (let ((root (locate-dominating-file default-directory "project.clj"))) 
-    (when (not root) 
-      (error "Not in a Leiningen project.")) 
-    ;; you can customize slime-port using .dir-locals.el 
-    (shell-command (format "cd %s && ~/Documents/github/leiningen/bin/lein swank %s &"
-			   root slime-port) 
-                   "*lein-swank*") 
-    (set-process-filter (get-buffer-process "*lein-swank*") 
-                        (lambda (process output) 
-                          (when (string-match "Connection opened on" output) 
-                            (slime-connect "localhost" slime-port) 
-                            (set-process-filter process nil)))) 
-    (message "Starting swank server...")))
+(add-hook 'nrepl-interaction-mode-hook 'nrepl-turn-on-eldoc-mode)
+(setq nrepl-popup-stacktraces nil)
+(add-to-list 'same-window-buffer-names "*nrepl*")
+(add-hook 'nrepl-mode-hook 'paredit-mode)
 
-(setq slime-protocol-version 'ignore) 
-
-
-(add-to-list 'load-path "~/Documents/github/magit/installed/share/emacs/site-lisp")
 (autoload 'magit-status "magit" nil t)
+(setq magit-revert-item-confirm t)
 
 (require 'uniquify)
 
-;; (iswitchb-mode 1)
-;; (setq iswitchb-buffer-ignore '("^ " "*Buffer" "^\*magit" "^\*Customize"
-;; 			       "^\*Completions" "^\*Messages" "^\*Help"
-;; 			       "\*scratch\*" "\*GNU Emacs\*"))
-;; (setq iswitchb-default-method 'samewindow)
-;; (defun iswitchb-local-keys ()
-;;   (mapc (lambda (K) 
-;; 	  (let* ((key (car K)) (fun (cdr K)))
-;; 	    (define-key iswitchb-mode-map (edmacro-parse-keys key) fun)))
-;; 	'(("<right>" . iswitchb-next-match)
-;; 	  ("<left>"  . iswitchb-prev-match)
-;; 	  ("<up>"    . ignore             )
-;; 	  ("<down>"  . ignore             ))))
-;; (add-hook 'iswitchb-define-mode-map-hook 'iswitchb-local-keys)
+(setq org-publish-project-alist
+      '(("cse630-org"
+         :base-directory "~/t/cse630/website/src/"
+         :base-extension "org"
+         :publishing-directory "~/t/cse630/website/output/"
+         :section-numbers nil
+         :recursive t
+         :publishing-function org-publish-org-to-html
+         :headline-levels 4
+         :makeindex t
+         :auto-preamble t)
+        ("cse630-static"
+         :base-directory "~/t/cse630/website/src/"
+         :base-extension "html\\|css\\|js\\|ico\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf\\|java\\|py\\|zip"
+         :publishing-directory "~/t/cse630/website/output/"
+         :recursive t
+         :publishing-function org-publish-attachment)
+        ("cse630" :components ("cse630-org" "cse630-static"))
+        ("cse3521-org"
+         :base-directory "~/git/teaching/cse3521-website/src/"
+         :base-extension "org"
+         :publishing-directory "~/git/teaching/cse3521-website/output/"
+         :section-numbers nil
+         :recursive t
+         :publishing-function org-publish-org-to-html
+         :headline-levels 4
+         :makeindex t
+         :auto-preamble t)
+        ("cse3521-static"
+         :base-directory "~/git/teaching/cse3521-website/src/"
+         :base-extension "html\\|css\\|js\\|ico\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf\\|java\\|py\\|zip\\|arff\\|dat\\|cpp\\|xls\\|otf\\|woff"
+         :publishing-directory "~/git/teaching/cse3521-website/output/"
+         :recursive t
+         :publishing-function org-publish-attachment)
+        ("cse3521" :components ("cse3521-org" "cse3521-static"))))
 
-;; (defadvice iswitchb-kill-buffer (after rescan-after-kill activate)
-;;   "*Regenerate the list of matching buffer names after a kill.
-;;     Necessary if using `uniquify' with `uniquify-after-kill-buffer-p'
-;;     set to non-nil."
-;;   (setq iswitchb-buflist iswitchb-matches)
-;;   (iswitchb-rescan))
-;; (defun iswitchb-rescan ()
-;;   "*Regenerate the list of matching buffer names."
-;;   (interactive)
-;;   (iswitchb-make-buflist iswitchb-default)
-;;   (setq iswitchb-rescan t))
+(setq org-export-html-mathjax-options
+      '((path "MathJax/MathJax.js")
+        (scale "100")
+        (align "center")
+        (indent "2em")
+        (mathml nil)))
 
+;; ("cse3521-pdf"
+;;          :base-directory "~/t/cse3521/website/src/"
+;;          :base-extension "org"
+;;          :publishing-directory "~/t/cse3521/website/pdf/"
+;;          :recursive t
+;;          :publishing-function org-publish-org-to-pdf)
 
-;; muse
-(require 'muse-mode)     ; load authoring mode
+(require 'org)
 
-(require 'muse-html)     ; load publishing styles
-(require 'muse-latex)
-(require 'muse-docbook)
-(require 'muse-latex2png-modified) ; in emacs.d, local modifications
-(require 'muse-colors)   ; in emacs.d, local modifications
+(require 'org-publish)
 
-(require 'muse-project)  ; publish files in projects
+(setq org-export-html-postamble nil)
+(setq org-export-html-preamble "<a href=\"index.html\">Home</a> &nbsp; &nbsp;
+          <!-- Plupper Button -->
+          <div id=\"plupperButton\" style=\"display: inline;\"></div>
+          <!-- End of Plupper Button Code -->
+")
 
+(setq org-export-html-special-string-regexps
+      (append
+       '(("\\(^\\|[ \"(]\\)'" . "\\1&lsquo;")
+         ("'" . "&rsquo;")
+         ("\\(^\\|[ (]\\)\"" . "\\1&ldquo;")
+         ("\"\\([ [:punct:]]\\|$\\)" . "&rdquo;\\1"))
+       org-export-html-special-string-regexps))
 
-(setq muse-project-alist
-      '(("miscellany" ("~/Documents/miscellany/content" :default "index")
-         (:base "html" :path "~/Documents/miscellany/html"))
-	("cse202" ("~/Documents/cse202/content" :default "CSE 202")
-	 (:base "html" :path "~/Documents/cse202/gh-pages"))
-        ("cse201" ("~/Documents/cse201/content" :default "CSE 201")
-         (:base "html" :path "~/Documents/cse201/content"))
-        ("dissertation" ("~/Documents/dissertation/muse" :default "index")
-         (:base "html" :path "~/Documents/dissertation/muse/html"))))
+(require 'htmlize)
 
+;; markdown-mode
+;; (autoload 'markdown-mode "markdown-mode.el"
+;;   "Major mode for editing Markdown files" t)
+(setq auto-mode-alist
+      (cons '("\.markdown" . markdown-mode) auto-mode-alist))
 
-;; wanderlust
-(autoload 'wl "wl" "Wanderlust" t)
-(autoload 'wl-other-frame "wl" "Wanderlust on new frame." t)
-(autoload 'wl-draft "wl-draft" "Write draft with Wanderlust." t)
+;; tramp
+(require 'tramp)
+(setq tramp-default-method "scp")
 
-(autoload 'wl-user-agent-compose "wl-draft" nil t)
-(if (boundp 'mail-user-agent)
-    (setq mail-user-agent 'wl-user-agent))
-(if (fboundp 'define-mail-user-agent)
-    (define-mail-user-agent
-      'wl-user-agent
-      'wl-user-agent-compose
-      'wl-draft-send
-      'wl-draft-kill
-      'mail-send-hook))
-
-(require 'w3m-ems)
-(require 'mime-w3m)
-
-
-(require 'ido)
-(ido-mode t)
-(setq ido-enable-flex-matching t)
-
-
-;; jdee
-(add-to-list 'load-path "~/.emacs.d/jdee-2.4.0.1/lisp")
-(add-to-list 'load-path "~/.emacs.d/cedet-1.0/common")
-(load-file "~/.emacs.d/cedet-1.0/common/cedet.el")
-(add-to-list 'load-path "~/.emacs.d/elib-1.0")
-
-(setq defer-loading-jde t)
-(if defer-loading-jde
-    (progn
-      (autoload 'jde-mode "jde" "JDE mode." t)
-      (setq auto-mode-alist
-	    (append
-	     '(("\\.java\\'" . jde-mode))
-	     auto-mode-alist)))
-  (require 'jde))
-
-(defun remove-dos-eol ()
-  "Removes the disturbing '^M' showing up in files containing mixed UNIX and DOS line endings."
+(defun win-swap-up-down ()
+  "Swap windows using buffer-move.el"
   (interactive)
-  (setq buffer-display-table (make-display-table))
-  (aset buffer-display-table ?\^M []))
+  (if (null (windmove-find-other-window 'up))
+      (buf-move-down) (buf-move-up)))
 
-(defun my-jde-mode-hook ()
-  (setq c-basic-offset 4)
-  (remove-dos-eol))
+(require 'buffer-move)
+(defun win-swap-left-right ()
+  "Swap windows using buffer-move.el"
+  (interactive)
+  (if (null (windmove-find-other-window 'right))
+      (buf-move-left) (buf-move-right)))
 
-(add-hook 'jde-mode-hook 'my-jde-mode-hook)
+(require 'zoom-frm)
 
 
-(autoload 'graphviz-dot-mode "graphviz-dot-mode" "Graphviz Dot Mode" t)
+;; Make M-x invokable from C-x C-m
+(global-set-key "\C-x\C-m" 'execute-extended-command)
+;; stop mailing
+(global-unset-key "\C-xm")
+;; stop CRM buffer
+(global-unset-key "\C-x\C-b")
+;; stop suspend
+(global-unset-key "\C-z")
+;; quick kill buffer
+(global-set-key "\C-\\" (lambda () (interactive) (kill-buffer (current-buffer))))
+;; goto line
+(global-set-key "\C-l" 'goto-line)
+;; zoom font size
+(global-set-key (kbd "C-+") 'zoom-in)
+(global-set-key (kbd "C--") 'zoom-out)
+;; allow swapping left-right buffers (and then some)
+(global-set-key (kbd "<C-S-right>") 'win-swap-left-right)
+(global-set-key (kbd "<C-S-left>") 'win-swap-left-right)
+
+(global-set-key (kbd "<C-S-down>") 'win-swap-up-down)
+(global-set-key (kbd "<C-S-up>") 'win-swap-up-down)
+
+(global-set-key (kbd "<f7>") 'magit-status)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 115 :width normal :family "Source Code Pro"))))
+ '(tabbar-button ((t (:inherit tabbar-default :box (:line-width 1 :color "gray")))))
+ '(tabbar-default ((t (:inherit variable-pitch :background "gainsboro" :foreground "dim gray" :height 0.8))))
+ '(tabbar-highlight ((t (:underline t))))
+ '(tabbar-selected ((t (:inherit tabbar-default :foreground "royal blue" :weight bold))))
+ '(tabbar-unselected ((t (:inherit tabbar-default)))))
+
+(if (window-system)
+    (progn
+      (set-frame-height (selected-frame) 40)
+      (set-frame-width (selected-frame) 120)))
+
+(ess-toggle-underscore nil)
 
 
-(add-to-list 'load-path "~/.emacs.d/color-theme-6.6.0")
-(require 'color-theme)
-(require 'color-theme-tangotango-josh)
-(eval-after-load "color-theme"
-  '(progn
-     (color-theme-initialize)
-     (color-theme-tangotango-josh)))
+(defun drupal-mode ()
+  "Drupal php-mode."
+  (interactive)
+  (php-mode)
+  (message "Drupal mode activated.")
+  (set 'tab-width 2)
+  (set 'c-basic-offset 2)
+  (set 'indent-tabs-mode nil)
+  (c-set-offset 'case-label '+)
+  (c-set-offset 'arglist-intro '+) ; for FAPI arrays and DBTNG
+  (c-set-offset 'arglist-cont-nonempty 'c-lineup-math))
+
+(defun setup-php-drupal ()
+  ; Drupal
+  (add-to-list 'auto-mode-alist '("\\.\\(module\\|test\\|install\\|theme\\)$" . drupal-mode))
+  (add-to-list 'auto-mode-alist '("/drupal.*\\.\\(php\\|inc\\)$" . drupal-mode))
+  (add-to-list 'auto-mode-alist '("\\.info" . conf-windows-mode)))
+
+(setup-php-drupal)
+
+
+
+(require 'expand-region)
+
+(defun grep-in-project ()
+  (interactive)
+  (er/mark-clj-word)
+  (let* ((project-root (locate-dominating-file 
+                        (file-name-directory (buffer-file-name)) "project.clj")))
+    (if project-root
+        (grep (concat "grep -nH -e " 
+                      (buffer-substring-no-properties (region-beginning) (region-end)) 
+                      " -R " project-root "src"))
+      (message (concat "no project.clj found at or below " (buffer-file-name))))))
+
+(global-set-key (kbd "C-c g") 'grep-in-project)
+
+(defun grep-in (project-root)
+  (interactive (list (read-directory-name "Project Root: " 
+                                          (locate-dominating-file 
+                                           default-directory
+                                           "project.clj"))))
+  (er/mark-clj-word)
+  (grep (concat "grep -nH -e " 
+                (buffer-substring-no-properties (region-beginning) (region-end))
+                " -R " project-root)))
+
+
+
+;;(add-to-list 'load-path ".emacs.d/markup-faces")
+;;(add-to-list 'load-path ".emacs.d/adoc-mode")
+;;(require 'adoc-mode)
+;;(add-to-list 'auto-mode-alist (cons "\\.asc\\'" 'adoc-mode))
+;;(add-hook 'adoc-mode-hook (lambda() (buffer-face-mode t)))
+
+
+(require 'eproject)
+(require 'eproject-extras)
+(define-project-type clojure (generic-git)
+  (look-for "project.clj")
+  :irrelevant-files ("records")
+  :relevant-files ("\\.clj$"))
+
+(require 'wc-mode)
+
+;; forth mode
+(add-to-list 'load-path "/usr/share/emacs/site-lisp/gforth")
+(autoload 'forth-mode "gforth.el")
+(setq auto-mode-alist (cons '("\\.fs\\'" . forth-mode)
+     			    auto-mode-alist))
+(autoload 'forth-block-mode "gforth.el")
+(setq auto-mode-alist (cons '("\\.fb\\'" . forth-block-mode)
+     			    auto-mode-alist))
+(add-hook 'forth-mode-hook
+          (function (lambda ()
+                      ;; customize variables here:
+                      (setq forth-indent-level 4)
+                      (setq forth-minor-indent-level 2)
+                      (setq forth-hilight-level 3)
+                      )))
+
+;; helm
+;; (add-to-list 'load-path "~/git/others/helm")
+;; (require 'helm-config)
+;; (helm-mode 1)
+
+;;(icy-mode 1)
+
+
+;;(require 'zenburn-theme)
+;;(load-theme 'tsdh-dark)
+
+
+;; org mode
+
+(add-hook 'org-mode-hook 'turn-on-auto-fill)
+
+
+;; winner mode
+(when (fboundp 'winner-mode)
+  (winner-mode 1))
+
+;; tabbar
+(add-to-list 'load-path "~/.emacs.d/tabbar")
+(require 'tabbar)
+
+;; from: https://gist.github.com/3demax/1264635
+;; we also need to set separator to avoid overlapping tabs by highlighted tabs
+(custom-set-variables
+ '(tabbar-separator (quote (0.5))))
+;; adding spaces
+(defun tabbar-buffer-tab-label (tab)
+  "Return a label for TAB.
+That is, a string used to represent it on the tab bar."
+  (let ((label  (if tabbar--buffer-show-groups
+                    (format "[%s]  " (tabbar-tab-tabset tab))
+                  (format "%s  " (tabbar-tab-value tab)))))
+    ;; Unless the tab bar auto scrolls to keep the selected tab
+    ;; visible, shorten the tab label to keep as many tabs as possible
+    ;; in the visible area of the tab bar.
+    (if tabbar-auto-scroll-flag
+        label
+      (tabbar-shorten
+       label (max 1 (/ (window-width)
+                       (length (tabbar-view
+                                (tabbar-current-tabset)))))))))
+
+(setq tabbar-buffer-groups-function
+      (lambda ()
+        (cond ((string-match "^\\*.+\\*$" (buffer-name)) '("Emacs"))
+              (t '("Rest")))))
+
+(tabbar-mode 1)
 
